@@ -1,0 +1,29 @@
+{% extends 'BasePage.html' %}
+
+{% block body %}
+<div class="body-container">
+    <div class="ping-body-container">
+        <div class="header-block">
+            <div class="header">Service Provider Sample</div>
+            <div class="sub-header">Application Logout</div>
+            <div class="left-header">
+                <a href={{SpSsoUrl}}>Back to SP</a>
+            </div>
+            <div class="right-header">
+                <a href={{IdpSsoUrl}}>Back to IdP</a>
+            </div>
+        </div>
+        <div class="logged-out-text-container">
+            <p class="logged-out-text">You are now logged out.</p>
+        </div>
+    </div>
+    <div class="ping-footer-container">
+        <div class="ping-footer">
+            <div class="ping-credits"></div>
+            <div class="ping-copyright">
+                Copyright © 2003-2020. Ping Identity Corporation. All rights reserved.
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

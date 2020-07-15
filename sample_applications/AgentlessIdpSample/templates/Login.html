@@ -1,0 +1,134 @@
+{% extends 'BasePage.html' %}
+
+{% block body %}
+<div class="body-container">
+    <div class="ping-body-container">
+        {%
+        if showData is not none:
+        %}
+        <div class="header-block">
+            <div class="header">Identity Provider Sample</div>
+            <div class="sub-header">Pick Up User-Session Attributes</div>
+            <div class="left-header">
+                <a href={{configureUrl}}>Configuration</a>
+            </div>
+        </div>
+        {%
+        else
+        %}
+        <div class="header-block">
+            <div class="header">Identity Provider Sample</div>
+            <div class="sub-header">Sign On</div>
+            <div class="left-header">
+                <a href={{configureUrl}}>Configuration</a>
+            </div>
+        </div>
+        {%
+        endif
+        %}
+
+        {%
+        if loginError is not none:
+        %}
+            <div class="login-failure"> {{loginError}} </div>
+        {%
+        endif
+        %}
+
+        {%
+        if showData is not none:
+        %}
+        <div class="row protocol-container">
+            <div class="column request-container">
+                <p class="text-label">Reference ID IdP Adapter Request</p>
+                <p class="text-value">GET {{pickupEndpoint}}</p>
+                <p>
+                    <a id="show_raw_request_link"
+                       onclick="javascript:toggleShowRaw('raw_request_textarea', 'show_raw_request_link');">
+                        Show raw
+                    </a>
+                </p>
+                <p>
+								<textarea id="raw_request_textarea"
+                                          class="code-view"
+                                          rows="5"
+                                          cols="60"
+                                          style="display:none"
+                                          readonly>{{rawRequest}}</textarea>
+                </p>
+                <p class="text-label">Reference ID</p>
+                <p class="text-value">{{REF}}</p>
+            </div>
+            <div class="column response-container">
+                <p class="text-label">Reference ID IdP Adapter Response</p>
+                <p class="text-value">
+                    {{httpStatus}}
+                </p>
+                <p>
+                    <a id="show_raw_response_link"
+                       onclick="javascript:toggleShowRaw('raw_response_textarea', 'show_raw_response_link');">
+                        Show raw
+                    </a>
+                </p>
+                <p>
+								<textarea id="raw_response_textarea"
+                                          class="code-view"
+                                          rows="20"
+                                          cols="60"
+                                          style="display:none"
+                                          readonly>{{rawResponse}}</textarea>
+                </p>
+                <p class="text-label">User-Session Attributes</p>
+                <textarea id="attributes_textarea"
+                          class="code-view"
+                          rows="10"
+                          cols="60"
+                          readonly>{{responseBody}}</textarea>
+            </div>
+        </div>
+        <div class="header sign-on-header">Sign On</div>
+        {%
+        endif
+        %}
+        <div class="row">
+            <div class="login-container">
+                <form method="post"
+                      action={{loginUrl}}>
+                    <div class="ping-input">
+                        <label class="ping-input-label">Username</label>
+                        <div class="tooltip">
+                            <input type="text"
+                                   id="username"
+                                   name="username"
+                                   autofocus>
+                            <span class="tooltiptext tooltip-right">
+                                {% print("The IdP application's default users are \"joe\", \"sarah\" and \"scott\". "  +
+                                                "They share a default password of \"test\". " +
+                                                "These values can be configured in the " +
+                                                "idp-sample-users.json file.")%}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="ping-input">
+                        <label class="ping-input-label">Password</label>
+                        <input type="password" id="password" name="password">
+                        <input type="hidden" id="resumePath" name="resumePath" value={{resumePath}}><br><br>
+                    </div>
+                    <div class="login-button-container">
+                        <input id="submit_button" class="table-button" type="submit" value="Sign On"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="ping-footer-container">
+        <div class="ping-footer">
+            <div class="ping-credits"></div>
+            <div class="ping-copyright">
+                Copyright © 2003-2020. Ping Identity Corporation. All rights reserved.
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

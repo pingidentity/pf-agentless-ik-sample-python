@@ -1,0 +1,116 @@
+{% extends 'BasePage.html' %}
+
+{% block body %}
+<div class="body-container">
+    <div class="ping-body-container">
+        <div class="header-block">
+            <div class="header">Service Provider Sample</div>
+            {%
+            if showData is not none:
+            %}
+            <div class="sub-header">Pick Up User-Session Attributes</div>
+            {%
+            else:
+            %}
+            <div class="sub-header">Single Sign-On</div>
+            {%
+            endif
+            %}
+            <div class="left-header">
+                <a href={{configureUrl}}>Configuration</a>
+            </div>
+        </div>
+        <div class="app-container">
+            {%
+            if showData is not none:
+            %}
+            <div class="row">
+                <div class="column request-container">
+                    <p class="text-label">Reference ID SP Adapter Request</p>
+                    <p class="text-value">{{pickupEndpoint}}</p>
+                    <p>
+                        <a id="show_raw_request_link"
+                           onclick="javascript:toggleShowRaw('raw_request_textarea', 'show_raw_request_link');">
+                            Show raw
+                        </a>
+                    </p>
+                    <p>
+								<textarea id="raw_request_textarea"
+                                          class="code-view"
+                                          rows="5"
+                                          cols="60"
+                                          style="display:none"
+                                          readonly>{{rawRequest}}</textarea>
+                    </p>
+                    <p class="text-label">Reference ID</p>
+                    <p class="text-value">{{REF}}</p>
+
+                </div>
+                <div class="column response-container">
+                    <p class="text-label">Reference ID SP Adapter Response</p>
+                    <p class="text-value">
+                        {{httpStatus}}
+                    </p>
+                    <p>
+                        <a id="show_raw_response_link"
+                           onclick="javascript:toggleShowRaw('raw_response_textarea', 'show_raw_response_link');">
+                            Show raw
+                        </a>
+                    </p>
+                    <p>
+								<textarea id="raw_response_textarea"
+                                          class="code-view"
+                                          rows="20"
+                                          cols="60"
+                                          style="display:none"
+                                          readonly>{{rawResponse}}</textarea>
+                    </p>
+                    <p class="text-label">User-Session Attributes</p>
+                    <textarea id="attributes_textarea"
+                              class="code-view"
+                              rows="15"
+                              cols="60"
+                              readonly>{{responseBody}}</textarea>
+                </div>
+            </div>
+            <div class="bottom-button-container" style="padding-top:30px">
+                <form method="POST"
+                      action={{sloUrl}}>
+                    <input class="table-button"
+                           id="slo_button"
+                           name="slo_button"
+                           type="submit"
+                           value="Single Logout"/>
+                </form>
+            </div>
+            <div class="ping-link-fragment">{{ spSsoEndpoint }}</div>
+            <div class="start-over-link-container">
+                <a href={{ssoUrl}}>Start Over</a>
+            </div>
+            {%
+            else:
+            %}
+            <form action={{ssoUrl}} method="POST">
+                <div class="sso-button-container">
+                    <input class="table-button " id="sso_button" type="submit" value="Single Sign-On"/>
+                </div>
+            </form>
+            <div class="ping-link-fragment">
+                {{ spSsoEndpoint }}
+            </div>
+            {%
+            endif
+            %}
+        </div>
+    </div>
+    <div class="ping-footer-container">
+        <div class="ping-footer">
+            <div class="ping-credits"></div>
+            <div class="ping-copyright">
+                Copyright © 2003-2020. Ping Identity Corporation. All rights reserved.
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

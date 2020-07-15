@@ -1,0 +1,102 @@
+{% extends 'BasePage.html' %}
+
+{% block body %}
+
+<div class="body-container">
+    <div class="ping-body-container">
+        <div class="header-block">
+            <div class="header">Identity Provider Sample</div>
+            <div class="sub-header">Configuration</div>
+        </div>
+        <div class="config-container">
+            {%
+            if configurationError is not none:
+            %}
+                <div class="configuration-failure">{{configurationError}}</div>
+            {%
+            endif
+            %}
+            <form name="idp-adapter-configuration"
+                  method="post"
+                  enctype="application/x-www-form-urlencoded"
+                  action={{configureUrl}}>
+                <div class="grid-container">
+                    <div class="ping-input grid-a">
+                        <label class="ping-input-label">BASE PF URL</label>
+                        <div class="ping-input-container">
+                            <input type="text"
+                                   name={{basePfUrlName}}
+                                   id="base_pf_url_input"
+                                   value={{basePfUrl}}>
+                        </div>
+                    </div>
+                    <div class="ping-input grid-b">
+                        <label class="ping-input-label">APPLICATION USERNAME</label>
+                        <div class="ping-input-container">
+                            <input type="text"
+                                   name={{adapterUsernameName}}
+                                   id="application_username_input"
+                                   value={{adapterUsername}}>
+                        </div>
+                    </div>
+                    <div class="ping-input grid-c">
+                        <label class="ping-input-label">APPLICATION PASSPHRASE</label>
+                        <div class="ping-input-container">
+                            <input type="text"
+                                   name={{adapterPassphraseName}}
+                                   id="application_passphrase_input"
+                                   value={{adapterPassphrase}}>
+                        </div>
+                    </div>
+                    <div class="ping-input grid-d">
+                        <label class="ping-input-label">IDP ADAPTER ID</label>
+                        <div class="ping-input-container">
+                            <input type="text"
+                                   name={{adapterIdName}}
+                                   id="adapter_id_input"
+                                   value={{adapterId}}>
+                        </div>
+                    </div>
+                    <div class="ping-input grid-f">
+                        <label class="ping-input-label">TARGET URL</label>
+                        <div class="ping-input-container">
+                            <input type="text"
+                                   name={{targetUrlName}}
+                                   id="target_url_input"
+                                   value={{targetUrl}}>
+                        </div>
+                    </div>
+                    <div class="ping-input grid-g">
+                        <label class="ping-input-label">PARTNER ENTITY ID</label>
+                        <div class="ping-input-container">
+                            <input type="text"
+                                   name={{partnerIdName}}
+                                   id="partner_entity_id_input"
+                                   value={{partnerId}}>
+                        </div>
+                    </div>
+                </div>
+                <div class="configuration-buttons-container">
+                    <div class="ping-input-container">
+                        <input class="table-button" id="save_button" name="submit" type="submit" value="Save"/>
+                    </div>
+                    <div class="ping-input-container">
+                        <div class="cancel">
+                            <a onclick="javascript:back();">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="ping-footer-container">
+        <div class="ping-footer">
+            <div class="ping-credits"></div>
+            <div class="ping-copyright">
+                Copyright © 2003-2020. Ping Identity Corporation. All rights reserved.
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

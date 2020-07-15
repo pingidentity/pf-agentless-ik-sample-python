@@ -1,0 +1,31 @@
+{% extends 'BasePage.html' %}
+{% block body %}
+<div class="body-container">
+    <div class="ping-body-container">
+        <div class="header-block">
+            <div class="header">Error</div>
+            <div class="left-header">
+                <a href={{configureUrl}}>Configuration</a>
+            </div>
+            <div class="right-header">
+                <a href={{ssoUrl}}>Start Over</a>
+            </div>
+        </div>
+        <div class="ping-messages ping-nopad">
+            <p>Oops</p>
+            <p>Looks like something is not right. Please ensure your configuration is correct and check the server logs
+                for more information.</p>
+            <p class="ping-note-text">500 Internal Server Error</p>
+        </div>
+    </div>
+    <div class="ping-footer-container">
+        <div class="ping-footer">
+            <div class="ping-credits"></div>
+            <div class="ping-copyright">
+                Copyright © 2003-2020. Ping Identity Corporation. All rights reserved.
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

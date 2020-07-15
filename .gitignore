@@ -1,0 +1,12 @@
+# Intellij
+.idea/
+
+__pycache__/
+*.pyc
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Environments
+venv/
